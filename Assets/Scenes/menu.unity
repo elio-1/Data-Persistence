@@ -495,7 +495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b62c7063cf8b44fb4a23d2a6dce425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerName: 
+  currentPlayerName: 
+  bestPlayerName: 
   playerHighScore: -1
 --- !u!4 &251198318
 Transform:

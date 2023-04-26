@@ -15,10 +15,11 @@ public class MainManager : MonoBehaviour
     public GameObject GameOverText;
     
     private bool m_Started = false;
-    private int m_Points;
+    private float m_Points;
     private string m_currentPlayerName = PlayerNameAndHighScore.Instance.currentPlayerName;
     private bool m_GameOver = false;
-
+    public static float ScoreMultiplier = 1.0f;
+    public static float DefaultScoreMultiplier = 1.0f;
     void Awake(){
         LoadHighScoreAndPlayer();
     }
@@ -68,8 +69,8 @@ public class MainManager : MonoBehaviour
 
     void AddPoint(int point)
     {
-        m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+        m_Points += (point*ScoreMultiplier);
+        ScoreText.text = $"Score : {(int)m_Points}";
     }
 
     void SetPlayerNameAndHighScore()
@@ -97,7 +98,7 @@ public class MainManager : MonoBehaviour
     {
         SaveHighScore data = new SaveHighScore();
         data.PlayerName = m_currentPlayerName;
-        data.PlayerScore = m_Points;
+        data.PlayerScore = (int)m_Points;
 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/highscore.json", json);        
